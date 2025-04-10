@@ -1,0 +1,43 @@
+services:
+  # TODO add postgres later
+  # db:
+  #   image: postgres:17
+  #   container_name: postgres_db
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_DB: mydatabase
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+  backend-py:
+    build: ./backend-py
+    container_name: backend_py
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app.py
+    volumes:
+      - ./backend-py/:/app
+    command: flask run --host=0.0.0.0
+
+  frontend-vue:
+    build: ./frontend-vj
+    container_name: frontend_vue
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend-py
+    volumes:
+      - ./frontend-vj/:/app
+
+# TODO enable volumes later for postgres
+# volumes:
+#   postgres_data:
+#     driver: local
