@@ -5,9 +5,10 @@
 *.tmp
 
 #### Backend-py specific ####
-backend-vj/__pycache__/
-backend-vj/*.py[cod]
-backend-vj/*$py.class
+backend-py/__pycache__/
+backend-py/pycache/*
+backend-py/*.py[cod]
+backend-py/*$py.class
 
 #### Frontend-vj specific ####
 # Logs
